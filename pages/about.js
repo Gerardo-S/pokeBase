@@ -4,7 +4,7 @@ import Layout from "../components/layout";
 
 export default function About() {
   return (
-    <Layout>
+    <Layout noHeroImg>
       <Head>
         <title>About</title>
       </Head>

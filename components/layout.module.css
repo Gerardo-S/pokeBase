@@ -5,6 +5,17 @@
   background: linear-gradient(90deg, #000000 1%, rgba(0, 0, 0, 0) 51%);
 }
 
+.characterListBackground {
+  height: 100vh;
+  min-width: none;
+  position: relative;
+  background: linear-gradient(
+    0deg,
+    rgba(90, 79, 74, 0.54),
+    rgba(90, 79, 74, 0.54)
+  );
+}
+
 .main {
   position: relative;
   z-index: 1;

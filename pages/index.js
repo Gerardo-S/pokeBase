@@ -4,14 +4,14 @@ import Link from "next/link";
 import Layout from "../components/layout";
 import PageButton from "../components/buttons/pageButton";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import HomeContentContainer from "../components/homeContent/homeContentContainer";
 import BodyContentContainer from "../components/homeContent/bodyContentContainer";
 export default function Home() {
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <Layout>
+    <Layout home>
       <Head>
         <title>PokeBase</title>
         <meta name="description" content="Unofficial Pokemon Pokedex" />

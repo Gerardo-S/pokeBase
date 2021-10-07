@@ -7,9 +7,9 @@ import HeroImg from "./heroImg/heroImg";
 import Footer from "./footer/footer";
 export const siteTitle = "Unofficial Pokemon Pokedex";
 
-export default function Layout({ children }) {
+export default function Layout({ children, home, noHeroImg }) {
   return (
-    <div className={styles.background}>
+    <div className={home ? styles.background : styles.characterListBackground}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -27,7 +27,7 @@ export default function Layout({ children }) {
       </Head>
       <NavBar />
       <main className={styles.main}>{children}</main>
-      <HeroImg />
+      {noHeroImg ? null : <HeroImg />}
 
       <Footer />
     </div>
