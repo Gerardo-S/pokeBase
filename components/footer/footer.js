@@ -11,7 +11,7 @@ export default function Footer() {
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <AppBar
-      position="fixed"
+      position="absolute"
       sx={{
         top: "auto",
         bottom: 0,

@@ -1,12 +1,13 @@
 .background {
-  height: 100vh;
+  height: 110vh;
   min-width: none;
   position: relative;
   background: linear-gradient(90deg, #000000 1%, rgba(0, 0, 0, 0) 51%);
+  background-attachment: fixed;
 }
 
 .characterListBackground {
-  height: 100vh;
+  height: 110vh;
   min-width: none;
   position: relative;
   background: linear-gradient(
@@ -14,6 +15,7 @@
     rgba(90, 79, 74, 0.54),
     rgba(90, 79, 74, 0.54)
   );
+  background-attachment: fixed;
 }
 
 .main {
