@@ -33,24 +33,18 @@ export default function Home() {
               marginTop: isMatch ? "50px" : "60%"
             }}
           >
-            <PageButton
-              btnText={"Get Started"}
-              btnWidth={"141px"}
-              btnColor={"#FA9F17"}
-              btnBgColor={"#8bc34a"}
-            />
+            <Link href="/pokemon/pokemonDetail">
+              <a className={styles.pageButtonLink}>
+                <PageButton
+                  btnText={"Get Started"}
+                  btnWidth={"141px"}
+                  btnColor={"#FA9F17"}
+                  btnBgColor={"#8bc34a"}
+                />
+              </a>
+            </Link>
           </div>
         </BodyContentContainer>
-        <h3>
-          <Link href="/pokemon/pokemonDetail">
-            <a style={{ textDecoration: "none" }}>Pokemon Details Page</a>
-          </Link>
-        </h3>
-        <h4>
-          <Link href="/about">
-            <a style={{ textDecoration: "none" }}>About Page</a>
-          </Link>
-        </h4>
       </HomeContentContainer>
     </Layout>
   );
