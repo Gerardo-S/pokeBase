@@ -33,7 +33,7 @@ export default function Home() {
               marginTop: isMatch ? "50px" : "60%"
             }}
           >
-            <Link href="/pokemon/pokemonDetail">
+            <Link href="/pokemon/allPokemon">
               <a className={styles.pageButtonLink}>
                 <PageButton
                   btnText={"Get Started"}
