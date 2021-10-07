@@ -2,9 +2,9 @@
 // https://pokeapi.co/api/v2/pokemon/
 // select pokemon https://pokeapi.co/api/v2/pokemon/1/
 
-https://pokeapi.co/api/v2/{endpoint}/
-https://pokeapi.co/api/v2/pokemon/12/
-https://pokeapi.co/api/v2/pokemon-species/12/
+// https://pokeapi.co/api/v2/{endpoint}/
+// https://pokeapi.co/api/v2/pokemon/12/
+// https://pokeapi.co/api/v2/pokemon-species/12/
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default function handler(req, res) {
