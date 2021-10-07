@@ -1,6 +1,7 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Link from "next/link";
+import styles from "../layout.module.css";
 import Image from "next/image";
 
 export default function NavContent(props) {
@@ -19,9 +20,12 @@ export default function NavContent(props) {
   });
 
   return (
-    <Box sx={{ display: "flex", ml: 2, pl: 2 }}>
-      {navItems}
-      <Image src={logo2} alt="Bolt image" width={"60px"} height={"60px"} />
-    </Box>
+    <Link href="/about">
+      <a className={styles.aboutLinks}>
+        {" "}
+        {navItems}
+        <Image src={logo2} alt="Bolt image" width={"60px"} height={"60px"} />
+      </a>
+    </Link>
   );
 }

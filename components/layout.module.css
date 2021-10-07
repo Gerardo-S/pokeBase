@@ -9,3 +9,18 @@
   position: relative;
   z-index: 1;
 }
+
+.imageHover:hover {
+  opacity: 0.5;
+}
+
+.aboutLinks {
+  display: flex;
+  margin-left: 2;
+  padding-left: 2;
+  text-decoration: none;
+}
+
+.aboutLinks:hover {
+  opacity: 0.5;
+}

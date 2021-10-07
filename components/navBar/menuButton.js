@@ -26,7 +26,7 @@ export default function MenuButton(props) {
           mr: 2,
           zIndex: 1,
 
-          backgroundColor: theme.palette.btnPrimary.main,
+          backgroundColor: "#eceff1",
           "&:hover": {
             backgroundColor: "#6188c7",
             borderColor: "#0062cc",
@@ -39,7 +39,7 @@ export default function MenuButton(props) {
         aria-expanded={open ? "true" : undefined}
         onClick={onClick}
       >
-        <MenuIcon fontSize="large" />
+        <MenuIcon fontSize="small" />
       </IconButton>
       <Menu
         id="fade-menu"

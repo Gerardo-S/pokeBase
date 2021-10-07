@@ -9,6 +9,8 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import NavContent from "./navContent";
 import Logo from "../../public/images/pokeball.png";
 import Bolt from "../../public/images/bolt.png";
+import Link from "next/link";
+import styles from "../layout.module.css";
 import Image from "next/image";
 
 export const navLinks = {
@@ -43,15 +45,21 @@ export default function NavBar() {
             width: "90%",
             height: 1,
             display: "flex",
-            alignItems: "center"
+            alignItems: "center",
+            zIndex: "1"
           }}
         >
-          <Image
-            src={Logo}
-            alt={navLinks.navHomeLogoAlt}
-            width={69}
-            height={65}
-          />
+          <Link href="/">
+            <a className={styles.imageHover}>
+              <Image
+                src={Logo}
+                alt={navLinks.navHomeLogoAlt}
+                width={69}
+                height={65}
+              />
+            </a>
+          </Link>
+
           <Typography
             variant="subtitle1"
             component="div"
