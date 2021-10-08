@@ -1,17 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../../components/layout";
-import { Container, Box, Typography, Paper, Grid } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import ListContainer from "../../components/pokemonList/listContainer";
+import ItemGrid from "../../components/pokemonList/itemGrid";
 import styles from "../../components/pokemonList/pokemonList.module.css";
-import { experimentalStyled as styled } from "@mui/material/styles";
 import Avatar from "@mui/material/Avatar";
 
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary
-}));
 export default function AllPokemon() {
   return (
     <Layout>
@@ -24,39 +19,19 @@ export default function AllPokemon() {
             Pokemon
           </Typography>
         </Box>
-        <Box
-          sx={{
-            mt: "2%",
-            mx: "auto",
-            px: "5px",
-            width: "75%"
-          }}
-        >
-          {" "}
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid
-              container
-              rowSpacing={{ xs: 2, md: 8 }}
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-              columns={{ xs: 4, sm: 8, md: 12 }}
-            >
-              {Array.from(Array(20)).map((_, index) => (
-                <Grid
-                  item
-                  xs={2}
-                  sm={4}
-                  md={3}
-                  key={index}
-                  sx={{ display: "flex", justifyContent: "center" }}
-                >
-                  <Avatar sx={{ width: 130, height: 130 }}>sx=2</Avatar>
-                  {/* <Item>
-                  </Item> */}
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-        </Box>
+        <ListContainer>
+          {Array.from(Array(20)).map((_, index) => (
+            <ItemGrid key={index}>
+              <Avatar sx={{ width: 130, height: 130 }}>sx=2</Avatar>
+              <Box className={styles.avatarDetailsContainer}>
+                <Typography variant="subtitle2" component="div">
+                  Name: Hello World <br />
+                  Type: Type Here
+                </Typography>
+              </Box>
+            </ItemGrid>
+          ))}
+        </ListContainer>
       </main>
     </Layout>
   );
