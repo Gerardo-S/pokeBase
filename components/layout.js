@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import styles from "../components/layout.module.css";
 import NavBar from "../components/navBar/navBar";
 import HeroImg from "./heroImg/heroImg";
@@ -26,10 +24,11 @@ export default function Layout({ children, home, noHeroImg }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <NavBar />
-      <main className={styles.main}>{children}</main>
+      <main>
+        {children}
+        <Footer />
+      </main>
       {noHeroImg ? null : <HeroImg />}
-
-      <Footer />
     </div>
   );
 }

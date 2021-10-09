@@ -8,7 +8,9 @@
   width: 75%;
   padding: 5px;
   margin-top: 2%;
-  /* min-width: 650px; */
+  max-height: 86vh;
+  min-width: 100%;
+  overflow-y: auto;
 }
 
 .avatarDetailsContainer {

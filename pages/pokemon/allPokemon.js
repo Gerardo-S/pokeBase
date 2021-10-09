@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import Layout from "../../components/layout";
 import { Box, Typography } from "@mui/material";
 import ListContainer from "../../components/pokemonList/listContainer";
@@ -13,7 +12,13 @@ export default function AllPokemon() {
       <Head>
         <title>All Pokemon Page</title>
       </Head>
-      <main>
+      <main
+        style={{
+          height: "100%",
+          paddingBottom: "20px",
+          marginBottom: "2%"
+        }}
+      >
         <Box className={styles.pokemonTitle}>
           <Typography variant="h3" component="div">
             Pokemon

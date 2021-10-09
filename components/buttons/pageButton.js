@@ -15,6 +15,7 @@ export default function PageButton({
     <Button
       variant="contained"
       sx={{
+        zIndex: "2",
         color: theme.palette.primary.main,
         mr: 2,
         mt: marginTop === undefined ? 0 : marginTop,
