@@ -8,8 +8,12 @@
   width: 75%;
   padding: 5px;
   margin-top: 2%;
-  max-height: 86vh;
   min-width: 100%;
+}
+.overFlowContent {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  max-height: 86vh;
   overflow-y: auto;
 }
 

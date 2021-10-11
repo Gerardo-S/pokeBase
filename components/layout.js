@@ -23,12 +23,13 @@ export default function Layout({ children, home, noHeroImg }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+
       <NavBar />
-      <main>
-        {children}
-        <Footer />
-      </main>
-      {noHeroImg ? null : <HeroImg />}
+      <div className={styles.heroImgPosition}>
+        {noHeroImg ? null : <HeroImg />}
+      </div>
+      <main style={{ position: "absolute", top: "120px" }}>{children}</main>
+      <Footer />
     </div>
   );
 }

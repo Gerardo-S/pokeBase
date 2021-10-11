@@ -1,4 +1,5 @@
 .background {
+  display: block;
   height: 110vh;
   min-width: none;
   position: relative;
@@ -7,6 +8,7 @@
 }
 
 .characterListBackground {
+  display: block;
   height: 130vh;
   min-width: none;
   position: relative;
@@ -20,7 +22,6 @@
 
 .main {
   position: relative;
-  z-index: 1;
 }
 
 .imageHover:hover {
@@ -36,4 +37,12 @@
 
 .aboutLinks:hover {
   opacity: 0.5;
+}
+
+.heroImgPosition {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  bottom: 115px;
+  z-index: -1;
 }

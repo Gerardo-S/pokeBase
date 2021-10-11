@@ -24,6 +24,7 @@ export default function AllPokemon() {
             Pokemon
           </Typography>
         </Box>
+
         <ListContainer>
           {Array.from(Array(20)).map((_, index) => (
             <ItemGrid key={index}>
