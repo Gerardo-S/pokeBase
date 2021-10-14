@@ -13,10 +13,14 @@
 .overFlowContent {
   padding-top: 10px;
   padding-bottom: 10px;
-  max-height: 86vh;
+  max-height: 100vh;
   overflow-y: auto;
+  margin-bottom: 2%;
 }
 
+.overFlowContent::-webkit-scrollbar {
+  display: none;
+}
 .avatarDetailsContainer {
   display: flex;
   justify-content: center;
