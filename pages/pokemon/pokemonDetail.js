@@ -81,7 +81,7 @@ export default function PokemonDetail() {
                 justifyContent="center"
                 xs={12}
                 md={12}
-                sx={{ mt: "20%" }}
+                sx={{ mt: "15%" }}
               >
                 <Typography variant="subtitle1" component="div">
                   Forms
