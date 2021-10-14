@@ -3,11 +3,22 @@ import styles from "../components/layout.module.css";
 import NavBar from "../components/navBar/navBar";
 import HeroImg from "./heroImg/heroImg";
 import Footer from "./footer/footer";
+import { useMediaQuery, useTheme } from "@mui/material";
 export const siteTitle = "Unofficial Pokemon Pokedex";
 
+const adjustHeight4Mobile = (isMatch) => {
+  if (isMatch) {
+    return styles.characterListBackgroundMobileView;
+  } else {
+    return styles.characterListBackground;
+  }
+};
+
 export default function Layout({ children, home, noHeroImg }) {
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down("xl"));
   return (
-    <div className={home ? styles.background : styles.characterListBackground}>
+    <div className={home ? styles.background : adjustHeight4Mobile(isMatch)}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -25,10 +36,17 @@ export default function Layout({ children, home, noHeroImg }) {
       </Head>
 
       <NavBar />
-      <div className={styles.heroImgPosition}>
-        {noHeroImg ? null : <HeroImg />}
+      <main>{children}</main>
+      <div
+        style={{ position: "absolute", top: "0px" }}
+        className={styles.heroImgPosition}
+      >
+        {noHeroImg ? null : (
+          <div style={{ position: "relative", width: "100%", height: "100%" }}>
+            <HeroImg />
+          </div>
+        )}
       </div>
-      <main style={{ position: "absolute", top: "120px" }}>{children}</main>
       <Footer />
     </div>
   );

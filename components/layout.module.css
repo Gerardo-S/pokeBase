@@ -1,7 +1,7 @@
 .background {
   display: block;
-  height: 110vh;
-  min-width: none;
+  height: 130vh;
+  min-width: 390px;
   position: relative;
   background: linear-gradient(90deg, #000000 1%, rgba(0, 0, 0, 0) 51%);
   background-attachment: fixed;
@@ -10,7 +10,7 @@
 .characterListBackground {
   display: block;
   height: 130vh;
-  min-width: none;
+  min-width: 390px;
   position: relative;
   background: linear-gradient(
     0deg,
@@ -20,6 +20,18 @@
   background-attachment: fixed;
 }
 
+.characterListBackgroundMobileView {
+  display: block;
+  min-height: 250vh;
+  min-width: 390px;
+  position: relative;
+  background: linear-gradient(
+    0deg,
+    rgba(90, 79, 74, 0.54),
+    rgba(90, 79, 74, 0.54)
+  );
+  background-attachment: fixed;
+}
 .main {
   position: relative;
 }
