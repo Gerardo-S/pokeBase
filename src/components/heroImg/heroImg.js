@@ -1,6 +1,6 @@
 import * as React from "react";
 import Image from "next/image";
-import BackgroundImg from "../../public/images/pikachu.jpg";
+import BackgroundImg from "../../../public/images/pikachu.jpg";
 import styles from "../heroImg/heroImg.module.css";
 const HeroImg = () => {
   return (

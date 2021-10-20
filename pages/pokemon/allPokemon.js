@@ -1,12 +1,65 @@
+import React from "react";
 import Head from "next/head";
-import Layout from "../../components/layout";
+import {
+  getAllPokemon,
+  getPokemonDetails,
+  getPokemonId
+} from "../../src/util/API/API";
+import Layout from "../../src/components/layout";
 import { Box, Typography } from "@mui/material";
-import ListContainer from "../../components/pokemonList/listContainer";
-import ItemGrid from "../../components/pokemonList/itemGrid";
-import styles from "../../components/pokemonList/pokemonList.module.css";
+import ListContainer from "../../src/components/pokemonList/listContainer";
+import ItemGrid from "../../src/components/pokemonList/itemGrid";
+import styles from "../../src/components/pokemonList/pokemonList.module.css";
 import Avatar from "@mui/material/Avatar";
 
+//   TODO use a multi fetcher function to receive all promises from SWR ===============
+// async function fetcherAllPromises(promises) {
+//   const details = await Promise.all(promises);
+//   console.log("details", details);
+//   return await details;
+// }
+
 export default function AllPokemon() {
+  // TODO: Find way to use SWR
+  // const { data: pokemon, error: err1 } = useSWR(
+  //   "https://pokeapi.co/api/v2/pokemon/",
+  //   getAllPokemon
+
+  // {
+  //   revalidateOnMount: false
+  // }
+  // );
+  // const { data: details, error: err2 } = useSWR(() => {
+  //   let promises = [];
+  //   pokemon.results.forEach((p) => {
+  //     promises.push(getPokemonDetails(getPokemonId(p.url)));
+  //   });
+  // }, fetcherAllPromises);
+
+  // console.log("error", err1);
+  // console.log("data", pokemon);
+  // Unable to obtain details
+  // console.log("err2", err2);
+  // console.log("details", details);
+
+  // =======================================================================
+
+  const [pokemon, setPokemon] = React.useState([]);
+
+  React.useEffect(() => {
+    async function getData() {
+      const pokemonList = await getAllPokemon();
+      let promises = [];
+      pokemonList.results.forEach((p) => {
+        promises.push(getPokemonDetails(getPokemonId(p.url)));
+      });
+      const details = await Promise.all(promises);
+      // console.log("details", details);
+      setPokemon(details);
+    }
+    getData();
+  }, []);
+
   return (
     <Layout>
       <Head>
@@ -26,17 +79,30 @@ export default function AllPokemon() {
         </Box>
 
         <ListContainer>
-          {Array.from(Array(20)).map((_, index) => (
-            <ItemGrid key={index}>
-              <Avatar sx={{ width: 130, height: 130 }}>sx=2</Avatar>
-              <Box className={styles.avatarDetailsContainer}>
-                <Typography variant="subtitle2" component="div">
-                  Name: Hello World <br />
-                  Type: Type Here
-                </Typography>
-              </Box>
-            </ItemGrid>
-          ))}
+          {!pokemon && <h1>...isLoading</h1>}
+          {pokemon && (
+            <>
+              {pokemon.map((p) => (
+                <ItemGrid key={p.id}>
+                  <Avatar
+                    className={styles.avatarIconBackground}
+                    alt={p.name}
+                    src={p.sprites.other["official-artwork"].front_default}
+                    sx={{ width: 130, height: 130 }}
+                  />
+                  <Box className={styles.avatarDetailsContainer}>
+                    <Typography variant="subtitle2" component="div">
+                      Name: {p.name}
+                      <br />
+                      Type: {p.types[0].type.name}
+                      {/* TODO : second type will not display */}
+                      {/* {types[1].type.name} */}
+                    </Typography>
+                  </Box>
+                </ItemGrid>
+              ))}
+            </>
+          )}
         </ListContainer>
       </main>
     </Layout>

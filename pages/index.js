@@ -1,12 +1,12 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import Layout from "../components/layout";
-import PageButton from "../components/buttons/pageButton";
+import Layout from "../src/components/layout";
+import PageButton from "../src/components/buttons/pageButton";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { Typography } from "@mui/material";
-import HomeContentContainer from "../components/homeContent/homeContentContainer";
-import BodyContentContainer from "../components/homeContent/bodyContentContainer";
+import HomeContentContainer from "../src/components/homeContent/homeContentContainer";
+import BodyContentContainer from "../src/components/homeContent/bodyContentContainer";
 export default function Home() {
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));

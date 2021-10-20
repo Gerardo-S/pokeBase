@@ -18,6 +18,9 @@
   margin-bottom: 2%;
 }
 
+.avatarIconBackground {
+  background: linear-gradient(141.77deg, #f47174 31.27%, #fdfaf4 56.82%);
+}
 .overFlowContent::-webkit-scrollbar {
   display: none;
 }

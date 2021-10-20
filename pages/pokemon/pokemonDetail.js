@@ -1,8 +1,8 @@
 import Head from "next/head";
-import Layout from "../../components/layout";
+import Layout from "../../src/components/layout";
 import { Box, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import styles from "../../components/pokemonList/pokemonList.module.css";
+import styles from "../../src/components/pokemonList/pokemonList.module.css";
 import Avatar from "@mui/material/Avatar";
 
 export default function PokemonDetail() {
@@ -81,7 +81,7 @@ export default function PokemonDetail() {
                 justifyContent="center"
                 xs={12}
                 md={12}
-                sx={{ mt: "15%" }}
+                sx={{ mt: "10%" }}
               >
                 <Typography variant="subtitle1" component="div">
                   Forms
