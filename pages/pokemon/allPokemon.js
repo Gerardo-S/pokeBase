@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import {
   getAllPokemon,
   getPokemonDetails,
@@ -54,6 +55,7 @@ export default function AllPokemon() {
         promises.push(getPokemonDetails(getPokemonId(p.url)));
       });
       const details = await Promise.all(promises);
+
       // console.log("details", details);
       setPokemon(details);
     }
@@ -84,12 +86,24 @@ export default function AllPokemon() {
             <>
               {pokemon.map((p) => (
                 <ItemGrid key={p.id}>
-                  <Avatar
-                    className={styles.avatarIconBackground}
-                    alt={p.name}
-                    src={p.sprites.other["official-artwork"].front_default}
-                    sx={{ width: 130, height: 130 }}
-                  />
+                  <Link
+                    href={{
+                      pathname: "/pokemon/[slug]",
+                      query: { slug: p.id }
+                    }}
+                  >
+                    <Avatar
+                      className={styles.avatarIconBackground}
+                      alt={p.name}
+                      src={p.sprites.other["official-artwork"].front_default}
+                      sx={{
+                        width: 130,
+                        height: 130,
+                        border: 3,
+                        borderColor: "#F47174"
+                      }}
+                    />
+                  </Link>
                   <Box className={styles.avatarDetailsContainer}>
                     <Typography variant="subtitle2" component="div">
                       Name: {p.name}
