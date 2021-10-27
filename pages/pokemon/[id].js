@@ -84,7 +84,7 @@ export default function PokemonDetail({
         <title>Pokemon Details Page</title>
       </Head>
 
-      <Container sx={{ position: "relative", top: "80px" }}>
+      <Container sx={{ position: "relative", top: "20px" }}>
         <Box
           sx={{
             flexGrow: 1
