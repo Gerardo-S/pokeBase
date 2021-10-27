@@ -13,7 +13,7 @@
 .overFlowContent {
   padding-top: 10px;
   padding-bottom: 10px;
-  max-height: 100vh;
+  max-height: 170vh;
   overflow-y: auto;
   margin-bottom: 2%;
 }
