@@ -6,18 +6,57 @@ import styles from "../../src/components/pokemonList/pokemonList.module.css";
 import Avatar from "@mui/material/Avatar";
 import {
   getPokemonDetails,
-  getPokemonSpeciesDetail
+  getPokemonSpeciesDetail,
+  getPokemonEvolutionChain,
+  getPokemonId
 } from "../../src/util/API/API";
 import EvolutionTree from "../../src/components/evolutions/evolutionTree";
 
 export async function getServerSideProps(context) {
   const res = await getPokemonDetails(context.params.id);
-  // const res2 = await getPokemonEvolutionChain(context.params.id);
   const res3 = await getPokemonSpeciesDetail(context.params.id);
+  const evoChain = await getPokemonEvolutionChain(res3.evolution_chain.url);
 
   const pokemon = await res;
-  // const evoData = await res2;
   const speciesData = await res3;
+
+  // Url's for each pokemon in chain pokemon Details (works!)
+  // const firstChainDetails = await evoChain.chain.species.url;
+  // const secondChainDetails = await evoChain.chain.evolves_to[0].species.url;
+  // const thirdChainDetails = await evoChain.chain.evolves_to[0].evolves_to[0]
+  //   .species.url;
+
+  // WIP: Conditional if there are no evolutions TEST
+  const firstChainDetails = await evoChain.chain.species.url;
+  const secondChainDetails = await evoChain.chain.evolves_to[0].species.url;
+  const thirdChainDetails = await evoChain.chain.evolves_to[0].evolves_to[0]
+    .species.url;
+
+  // Array for evolution details
+  const evoChainURLs = [
+    firstChainDetails,
+    secondChainDetails,
+    thirdChainDetails
+  ];
+
+  // get all details of evolution chain
+  let promises = [];
+
+  evoChainURLs.forEach((d) => {
+    promises.push(getPokemonDetails(getPokemonId(d)));
+  });
+
+  const evoultionListDetails = await Promise.all(promises);
+
+  // Modify return data to only include image,name, and ID
+  const spriteImageDetails = evoultionListDetails.map((i) => {
+    const { sprites, id, name } = i;
+    return {
+      sprites,
+      id,
+      name
+    };
+  });
   if (!pokemon) {
     return {
       notFound: true
@@ -26,24 +65,18 @@ export async function getServerSideProps(context) {
   return {
     props: {
       pokemon,
-      // evoData,
-      speciesData
+      speciesData,
+      spriteImageDetails
     }
   };
 }
 
-export default function PokemonDetail({ pokemon, speciesData }) {
-  // console.log("pokemon", pokemon);
-  // console.log("evoData", evoData);
-  // console.log("SpeciesData", speciesData.evolution_chain.url);
-  // const evoStep1 = evoData.chain.evolves_to[0].species.name;
-  // const evoStep2 = evoData.chain.evolves_to[0].evolves_to[0].species.name;
-
-  const evoChainURL = speciesData.evolution_chain.url;
-  // console.log("evoChainURL", evoChainURL);
-
-  // console.log("evoStep1", evoStep1);
-  // console.log("evoStep2", evoStep2);
+export default function PokemonDetail({
+  pokemon,
+  speciesData,
+  spriteImageDetails
+}) {
+  // console.log("spriteImage&Details", spriteImageDetails);
 
   return (
     <Layout noHeroImg>
@@ -98,9 +131,13 @@ export default function PokemonDetail({ pokemon, speciesData }) {
                           : "#F47174"
                     }}
                     className={styles.avatarIconBackground}
-                    alt={pokemon.name}
-                    src={pokemon.sprites.other.dream_world.front_default}
-                  />
+                  >
+                    <img
+                      style={{ width: "220px", height: "220px" }}
+                      alt={pokemon.name}
+                      srcSet={pokemon.sprites.other.dream_world.front_default}
+                    />
+                  </Avatar>
                 </Grid>
                 <Grid
                   item
@@ -136,7 +173,7 @@ export default function PokemonDetail({ pokemon, speciesData }) {
                 </Grid>
               </Grid>
             </Grid>
-            <EvolutionTree evoChainURL={evoChainURL} />
+            <EvolutionTree evoList={spriteImageDetails} />
           </Grid>
         </Box>
       </Container>
