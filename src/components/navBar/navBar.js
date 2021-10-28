@@ -59,17 +59,18 @@ export default function NavBar() {
               />
             </a>
           </Link>
-
-          <Typography
-            variant="subtitle1"
-            component="div"
-            sx={{
-              flexGrow: 2,
-              ml: "16px"
-            }}
-          >
-            {navLinks.navLink1}
-          </Typography>
+          <Link href="/pokemon/allPokemon">
+            <Typography
+              variant="subtitle1"
+              component="div"
+              sx={{
+                flexGrow: 2,
+                ml: "16px"
+              }}
+            >
+              <a className={styles.navLink1}>{navLinks.navLink1}</a>
+            </Typography>
+          </Link>
           {isMatch ? (
             <MenuButton
               open={open}

@@ -41,6 +41,11 @@
   opacity: 0.5;
 }
 
+.navLink1:hover {
+  color: #fa9f17;
+  cursor: pointer;
+}
+
 .aboutLinks {
   display: flex;
   margin-left: 2;

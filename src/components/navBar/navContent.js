@@ -5,7 +5,7 @@ import styles from "../layout.module.css";
 import Image from "next/image";
 
 export default function NavContent(props) {
-  const { dataArray, logo2, theme } = props;
+  const { dataArray, logo2 } = props;
   const navItems = dataArray.map((text) => {
     return (
       <Typography
