@@ -25,29 +25,18 @@ export default function EvolutionTree({ evoList }) {
           Evolution Tree
         </Typography>
       </Grid>
-      {!evoList && <h1>...isLoading</h1>}
-      {evoList && (
-        <>
+
+      {evoList.map((avatarDetails, index) => {
+        return (
           <EvoAvatar
-            evoName={evoList[0].name}
+            key={index + avatarDetails.name}
+            evoName={avatarDetails.name}
             evoImage={
-              evoList[0].sprites.other["official-artwork"].front_default
+              avatarDetails.sprites.other["official-artwork"].front_default
             }
           />
-          <EvoAvatar
-            evoName={evoList[1].name}
-            evoImage={
-              evoList[1].sprites.other["official-artwork"].front_default
-            }
-          />{" "}
-          <EvoAvatar
-            evoName={evoList[2].name}
-            evoImage={
-              evoList[2].sprites.other["official-artwork"].front_default
-            }
-          />{" "}
-        </>
-      )}
+        );
+      })}
     </Grid>
   );
 }

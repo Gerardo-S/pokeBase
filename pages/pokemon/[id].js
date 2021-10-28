@@ -20,36 +20,39 @@ export async function getServerSideProps(context) {
   const pokemon = await res;
   const speciesData = await res3;
 
-  // Url's for each pokemon in chain pokemon Details (works!)
-  // const firstChainDetails = await evoChain.chain.species.url;
-  // const secondChainDetails = await evoChain.chain.evolves_to[0].species.url;
-  // const thirdChainDetails = await evoChain.chain.evolves_to[0].evolves_to[0]
-  //   .species.url;
+  // Check to see if evolutions exist
+  const base = evoChain.chain.species.url;
+  const chain = evoChain.chain.evolves_to[0];
 
-  // WIP: Conditional if there are no evolutions TEST
-  const firstChainDetails = await evoChain.chain.species.url;
-  const secondChainDetails = await evoChain.chain.evolves_to[0].species.url;
-  const thirdChainDetails = await evoChain.chain.evolves_to[0].evolves_to[0]
-    .species.url;
+  const chainHelper = (baseURL, chainURL) => {
+    let detailArray = [baseURL];
+    const chain1Details = chainURL.species.url;
+    const chain2DetailsBase = chainURL.evolves_to[0];
 
-  // Array for evolution details
-  const evoChainURLs = [
-    firstChainDetails,
-    secondChainDetails,
-    thirdChainDetails
-  ];
+    if (chain1Details != undefined) {
+      detailArray.push(chain1Details);
+    }
+    if (chain2DetailsBase != undefined) {
+      const chain2Details = chain2DetailsBase.species.url;
+      detailArray.push(chain2Details);
+    }
+
+    return detailArray;
+  };
+
+  const chainResult = chainHelper(base, chain);
 
   // get all details of evolution chain
   let promises = [];
 
-  evoChainURLs.forEach((d) => {
+  chainResult.forEach((d) => {
     promises.push(getPokemonDetails(getPokemonId(d)));
   });
 
-  const evoultionListDetails = await Promise.all(promises);
+  const evolutionListDetails = await Promise.all(promises);
 
   // Modify return data to only include image,name, and ID
-  const spriteImageDetails = evoultionListDetails.map((i) => {
+  const spriteImageDetails = evolutionListDetails.map((i) => {
     const { sprites, id, name } = i;
     return {
       sprites,
@@ -76,8 +79,6 @@ export default function PokemonDetail({
   speciesData,
   spriteImageDetails
 }) {
-  // console.log("spriteImage&Details", spriteImageDetails);
-
   return (
     <Layout noHeroImg>
       <Head>
@@ -173,7 +174,10 @@ export default function PokemonDetail({
                 </Grid>
               </Grid>
             </Grid>
-            <EvolutionTree evoList={spriteImageDetails} />
+            {!spriteImageDetails && <h1>...isLoading</h1>}
+            {spriteImageDetails && (
+              <EvolutionTree evoList={spriteImageDetails} />
+            )}
           </Grid>
         </Box>
       </Container>
