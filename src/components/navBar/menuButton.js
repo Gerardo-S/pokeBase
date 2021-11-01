@@ -4,8 +4,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import MenuIcon from "@mui/icons-material/Menu";
+import Link from "next/link";
 import { useTheme } from "@mui/material";
 import Image from "next/image";
+import styles from "../layout.module.css";
 export default function MenuButton(props) {
   const { open, onClick, onClose, anchorEl, text, logo2 } = props;
   const theme = useTheme();
@@ -51,10 +53,19 @@ export default function MenuButton(props) {
         onClose={onClose}
         TransitionComponent={Fade}
       >
-        {menuItemList}
-        <MenuItem onClick={onClose}>
-          <Image src={logo2} alt="Lighting Bolt" width="30px" height="30px" />
-        </MenuItem>
+        <Link href="/about">
+          <a className={styles.aboutMenuItems}>
+            {menuItemList}
+            <MenuItem onClick={onClose}>
+              <Image
+                src={logo2}
+                alt="Lighting Bolt"
+                width="30px"
+                height="30px"
+              />
+            </MenuItem>
+          </a>
+        </Link>
       </Menu>
     </div>
   );
