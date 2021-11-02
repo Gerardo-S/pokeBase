@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import {
@@ -45,9 +45,21 @@ export default function AllPokemon() {
 
   // =======================================================================
 
-  const [pokemon, setPokemon] = React.useState([]);
+  const [pokemon, setPokemon] = useState([]);
+  const [endOfList, setEndOfList] = useState("");
+  const [pageLimit, setPageLimit] = useState(10);
 
-  React.useEffect(() => {
+  // TODO
+  const handleScroll = (e) => {
+    const bottom =
+      Math.trunc(e.target.scrollHeight - e.target.scrollTop) ===
+      e.target.clientHeight;
+    if (bottom) {
+      // console.log("you have reached the end");
+      setEndOfList("true");
+    }
+  };
+  useEffect(() => {
     async function getData() {
       const pokemonList = await getAllPokemon();
       let promises = [];
@@ -61,6 +73,23 @@ export default function AllPokemon() {
     }
     getData();
   }, []);
+
+  // TODO
+  useEffect(() => {
+    async function getAdditionalQuerysOnScroll() {
+      const pokemonList = await getAllPokemon(endOfList, pageLimit);
+      let promises = [];
+      pokemonList.results.forEach((p) => {
+        promises.push(getPokemonDetails(getPokemonId(p.url)));
+      });
+      const details = await Promise.all(promises);
+      setPokemon(details);
+      setPageLimit(pageLimit + 10);
+      setEndOfList("false");
+    }
+
+    endOfList ? getAdditionalQuerysOnScroll() : null;
+  }, [endOfList]);
 
   return (
     <Layout>
@@ -80,7 +109,7 @@ export default function AllPokemon() {
           </Typography>
         </Box>
 
-        <ListContainer>
+        <ListContainer handleScroll={handleScroll}>
           {!pokemon && <h1>...isLoading</h1>}
           {pokemon && (
             <>

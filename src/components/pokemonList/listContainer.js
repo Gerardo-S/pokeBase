@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import styles from "../../components/pokemonList/pokemonList.module.css";
 
-export default function ListContainer({ children }) {
+export default function ListContainer({ children, handleScroll }) {
   return (
     <Box className={styles.pokemonListWrapper}>
       {" "}
@@ -12,6 +12,7 @@ export default function ListContainer({ children }) {
         }}
       >
         <Grid
+          onScroll={(e) => handleScroll(e)}
           container
           className={styles.overFlowContent}
           rowSpacing={{ xs: 2, md: 8 }}

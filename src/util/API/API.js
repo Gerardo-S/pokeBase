@@ -1,5 +1,12 @@
-async function getAllPokemon() {
-  const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
+async function getAllPokemon(scroll, pageLimit) {
+  let query = "";
+  if (scroll) {
+    query = `https://pokeapi.co/api/v2/pokemon/?limit=${20 + pageLimit}`;
+  } else {
+    query = "https://pokeapi.co/api/v2/pokemon/";
+  }
+
+  const response = await fetch(query);
   if (!response.ok) throw Error(response.statusText);
   return await response.json();
 }
