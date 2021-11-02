@@ -1,9 +1,9 @@
 async function getAllPokemon(scroll, pageLimit) {
   let query = "";
   if (scroll) {
-    query = `https://pokeapi.co/api/v2/pokemon/?limit=${20 + pageLimit}`;
+    query = `https://pokeapi.co/api/v2/pokemon/?limit=${50 + pageLimit}`;
   } else {
-    query = "https://pokeapi.co/api/v2/pokemon/";
+    query = "https://pokeapi.co/api/v2/pokemon/?limit=50";
   }
 
   const response = await fetch(query);

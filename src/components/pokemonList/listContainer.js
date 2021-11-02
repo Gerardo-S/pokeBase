@@ -8,7 +8,7 @@ export default function ListContainer({ children, handleScroll }) {
       <Box
         sx={{
           flexGrow: 1,
-          height: "100%"
+          height: "90%"
         }}
       >
         <Grid

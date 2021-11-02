@@ -13,9 +13,11 @@
 .overFlowContent {
   padding-top: 10px;
   padding-bottom: 10px;
+  min-height: 100vh;
   max-height: 255vh;
   overflow-y: auto;
   margin-bottom: 2%;
+  /* background-color: blue; */
 }
 
 .avatarIconBackground {
