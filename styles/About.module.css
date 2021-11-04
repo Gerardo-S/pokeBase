@@ -1,0 +1,20 @@
+.appName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.techUsed {
+  color: #f47174;
+  background-color: #ffffff;
+  padding: 4px;
+}
+
+.exLink {
+  text-decoration: none;
+  color: blue;
+}
+
+.exLink:hover {
+  color: green;
+}
