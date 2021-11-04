@@ -1,10 +1,8 @@
-import * as React from "react";
+// import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import styles from "../../components/layout.module.css";
-import Image from "next/image";
 import { Typography, useMediaQuery, useTheme } from "@mui/material";
 export default function Footer() {
   const theme = useTheme();

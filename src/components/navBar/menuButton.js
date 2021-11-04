@@ -1,19 +1,17 @@
-import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
-import { useTheme } from "@mui/material";
 import Image from "next/image";
 import styles from "../layout.module.css";
 export default function MenuButton(props) {
   const { open, onClick, onClose, anchorEl, text, logo2 } = props;
-  const theme = useTheme();
+
   const menuItemList = text.map((list) => {
     return (
-      <MenuItem key={list} onClick={onClose}>
+      <MenuItem sx={{ color: "black" }} key={list} onClick={onClose}>
         {list}
       </MenuItem>
     );
@@ -56,6 +54,7 @@ export default function MenuButton(props) {
         <Link href="/about">
           <a className={styles.aboutMenuItems}>
             {menuItemList}
+
             <MenuItem onClick={onClose}>
               <Image
                 src={logo2}

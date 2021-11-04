@@ -150,7 +150,7 @@ export default function PokemonDetail({
                 >
                   <Grid item container direction="column">
                     <Typography
-                      variant="subtitle2"
+                      variant="subtitle1"
                       textAlign="center"
                       component="div"
                       sx={{ pb: 3, pt: 3 }}
