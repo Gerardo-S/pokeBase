@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
+import LoadingSVG from "../../public/images/circles.svg";
+import Image from "next/image";
 import Link from "next/link";
 import {
   getAllPokemon,
@@ -110,7 +112,7 @@ export default function AllPokemon() {
         </Box>
 
         <ListContainer handleScroll={handleScroll}>
-          {!pokemon && <h1>...isLoading</h1>}
+          {!pokemon && <Image src={LoadingSVG} width={130} height={130} />}
           {pokemon && (
             <>
               {pokemon.map((p) => (
@@ -138,8 +140,6 @@ export default function AllPokemon() {
                       Name: {p.name}
                       <br />
                       Type: {p.types[0].type.name}
-                      {/* TODO : second type will not display */}
-                      {/* {types[1].type.name} */}
                     </Typography>
                   </Box>
                 </ItemGrid>
