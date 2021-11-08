@@ -1,9 +1,11 @@
+export const baseQuery = "https://pokeapi.co/api/v2/pokemon";
+
 async function getAllPokemon(scroll, pageLimit) {
   let query = "";
   if (scroll) {
-    query = `https://pokeapi.co/api/v2/pokemon/?limit=${50 + pageLimit}`;
+    query = `${baseQuery}/?limit=${50 + pageLimit}`;
   } else {
-    query = "https://pokeapi.co/api/v2/pokemon/?limit=50";
+    query = `${baseQuery}/?limit=50`;
   }
 
   const response = await fetch(query);
@@ -12,9 +14,7 @@ async function getAllPokemon(scroll, pageLimit) {
 }
 
 async function getPokemonDetails(pokemonId) {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
-  );
+  const response = await fetch(`${baseQuery}/` + pokemonId);
   if (!response.ok) throw Error(response.statusText);
   return await response.json();
 }
@@ -26,9 +26,7 @@ async function getPokemonEvolutionChain(url) {
 }
 
 async function getPokemonSpeciesDetail(pokemonId) {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`
-  );
+  const response = await fetch(`${baseQuery}-species/${pokemonId}`);
 
   if (!response.ok) throw Error(response.statusText);
   return await response.json();
