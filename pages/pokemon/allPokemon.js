@@ -9,11 +9,31 @@ import {
   getPokemonId
 } from "../../src/util/API/API";
 import Layout from "../../src/components/layout";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Paper, InputBase, styled } from "@mui/material";
+
 import ListContainer from "../../src/components/pokemonList/listContainer";
 import ItemGrid from "../../src/components/pokemonList/itemGrid";
+import SearchIcon from "@mui/icons-material/Search";
+
 import styles from "../../src/components/pokemonList/pokemonList.module.css";
 import Avatar from "@mui/material/Avatar";
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "white",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch"
+      }
+    }
+  }
+}));
 
 export default function AllPokemon() {
   const [pokemon, setPokemon] = useState([]);
@@ -35,6 +55,7 @@ export default function AllPokemon() {
       pokemonList.results.forEach((p) => {
         promises.push(getPokemonDetails(getPokemonId(p.url)));
       });
+
       const details = await Promise.all(promises);
       setPokemon(details);
     }
@@ -69,10 +90,33 @@ export default function AllPokemon() {
           marginBottom: "2%"
         }}
       >
-        <Box className={styles.pokemonTitle}>
+        <Box
+          className={styles.pokemonTitle}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            p: 4,
+            alignItems: "center"
+          }}
+        >
           <Typography variant="h3" component="div">
             Pokemon
           </Typography>
+          <Paper
+            className={styles.searchPaper}
+            sx={{
+              backgroundColor: "rgba(255,255,255,.15)",
+              p: 1,
+              display: "flex",
+              alignItems: "center"
+            }}
+          >
+            <SearchIcon fontSize="large" color="primary" />
+            <StyledInputBase
+              placeholder="Search..."
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Paper>
         </Box>
 
         <ListContainer handleScroll={handleScroll}>

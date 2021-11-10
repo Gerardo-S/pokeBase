@@ -1,6 +1,17 @@
 .pokemonTitle {
-  margin-left: 5%;
+  margin: auto;
   margin-top: 2%;
+  width: 90%;
+}
+
+.searchPaper {
+  height: 100%;
+  border-radius: 0.5;
+  margin-left: 10px;
+}
+
+.searchPaper:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .pokemonListWrapper {
@@ -17,7 +28,6 @@
   max-height: 255vh;
   overflow-y: auto;
   margin-bottom: 2%;
-  /* background-color: blue; */
 }
 
 .avatarIconBackground {
