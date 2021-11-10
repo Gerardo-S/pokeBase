@@ -20,7 +20,6 @@ export async function getServerSideProps(context) {
   const pokemon = await res;
   const speciesData = await res3;
 
-  // Check to see if evolutions exist
   const base = evoChain.chain.species.url;
   const chain = evoChain.chain.evolves_to[0];
 
