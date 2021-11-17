@@ -9,7 +9,7 @@
 
 .characterListBackground {
   display: block;
-  min-height: 300vh;
+  min-height: 310vh;
   min-width: 390px;
   position: relative;
   background: linear-gradient(
@@ -21,7 +21,7 @@
 
 .characterListBackgroundMobileView {
   display: block;
-  min-height: 300vh;
+  min-height: 315vh;
   min-width: 390px;
   position: relative;
   background: linear-gradient(
