@@ -24,6 +24,9 @@ export async function getServerSideProps(context) {
   const chain = evoChain.chain.evolves_to[0];
 
   const chainHelper = (baseURL, chainURL) => {
+    if (baseURL == undefined || chainURL == undefined) {
+      return;
+    }
     let detailArray = [baseURL];
     const chain1Details = chainURL.species.url;
     const chain2DetailsBase = chainURL.evolves_to[0];
@@ -43,22 +46,24 @@ export async function getServerSideProps(context) {
 
   // get all details of evolution chain
   let promises = [];
-
-  chainResult.forEach((d) => {
-    promises.push(getPokemonDetails(getPokemonId(d)));
-  });
-
-  const evolutionListDetails = await Promise.all(promises);
-
-  // Modify return data to only include image,name, and ID
-  const spriteImageDetails = evolutionListDetails.map((i) => {
-    const { sprites, id, name } = i;
-    return {
-      sprites,
-      id,
-      name
-    };
-  });
+  let spriteImageDetails;
+  if (chainResult != undefined) {
+    chainResult.forEach((d) => {
+      promises.push(getPokemonDetails(getPokemonId(d)));
+    });
+    const evolutionListDetails = await Promise.all(promises);
+    // Modify return data to only include image,name, and ID
+    spriteImageDetails = evolutionListDetails.map((i) => {
+      const { sprites, id, name } = i;
+      return {
+        sprites,
+        id,
+        name
+      };
+    });
+  } else if (spriteImageDetails === undefined) {
+    spriteImageDetails = null;
+  }
   if (!pokemon) {
     return {
       notFound: true
@@ -173,7 +178,7 @@ export default function PokemonDetail({
                 </Grid>
               </Grid>
             </Grid>
-            {!spriteImageDetails && <h1>...isLoading</h1>}
+            {!spriteImageDetails && null}
             {spriteImageDetails && (
               <EvolutionTree evoList={spriteImageDetails} />
             )}
